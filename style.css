@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  text-align: center;
+}
+
+/* Background sections */
+.section {
+  width: 100%;
+}
+
+.bg {
+  width: 100%;
+  display: block;
+}
+
+/* Buttons */
+.buttons {
+  margin: 20px 0;
+}
+
+.buttons img {
+  width: 150px;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.buttons img:hover {
+  transform: scale(1.1);
+}
