@@ -1,1 +1,190 @@
 
+:root {
+  --bg: #050c12;
+  --surface: rgba(5, 12, 18, 0.92);
+  --text: #e7f5ff;
+  --muted: #98a5b4;
+  --accent: #7cff80;
+  --accent-dark: #1de9b6;
+  --portal: #7c76ff;
+  --radius: 28px;
+  --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, rgba(126, 255, 143, 0.12), transparent 18%),
+              radial-gradient(circle at top right, rgba(124, 118, 255, 0.14), transparent 20%),
+              linear-gradient(180deg, #050a0f 0%, #03070b 100%);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow: hidden;
+  animation: backgroundShift 25s ease-in-out infinite;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(124, 118, 255, 0.18), transparent 16%),
+              radial-gradient(circle at 80% 25%, rgba(124, 255, 127, 0.12), transparent 18%),
+              radial-gradient(circle at 50% 80%, rgba(79, 204, 255, 0.1), transparent 22%);
+  filter: blur(24px);
+  opacity: 0.7;
+  pointer-events: none;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.page {
+  width: min(460px, 100%);
+}
+
+.profile-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(13, 20, 34, 0.94), rgba(5, 9, 16, 0.95));
+  border: 1px solid rgba(124, 118, 255, 0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 30px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle at center, rgba(124, 118, 255, 0.18), transparent 42%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.profile-card::after {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle at 80% 20%, rgba(124, 255, 127, 0.12), transparent 35%);
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+.profile-img {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(124, 118, 255, 0.65);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 10px rgba(124, 118, 255, 0.08);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.bio {
+  font-family: "Old English Text MT", serif;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-size: 0.98rem;
+}
+
+.button-group {
+  display: grid;
+  gap: 12px;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(28, 42, 73, 0.7);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.icon-button:hover {
+  transform: translateY(-3px);
+  background: rgba(124, 118, 255, 0.16);
+  box-shadow: 0 20px 40px rgba(124, 118, 255, 0.16);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+}
+
+.telegram .icon svg,
+.linkedin .icon svg,
+.github .icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    background-position: top left, top right, center;
+  }
+  50% {
+    background-position: 10% 0%, 90% 0%, center;
+  }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-18px, 14px); }
+}
+
+.profile-card {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 520px) {
+  .profile-card {
+    padding: 28px 20px 34px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+}
